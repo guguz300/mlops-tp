@@ -1,0 +1,33 @@
+# Data files
+data/*.csv
+*.csv
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+
+# MLflow
+mlruns/
+
+# Models
+models/*.joblib
+models/*.pkl
+models/*.h5
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
