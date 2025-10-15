@@ -5,18 +5,18 @@ import zipfile
 import io 
 import os 
 def load_and_prepare_data(url, data_dir='data'): 
-""" 
-Télécharge, extrait et prépare le jeu de données Sentiment140. 
-""" 
-# Crée le répertoire de données s'il n'existe pas 
-os.makedirs(data_dir, exist_ok=True) 
-zip_path = os.path.join(data_dir, 'sentiment140.zip') 
-csv_path = os.path.join(data_dir, 'training.1600000.processed.noemoticon.csv') 
-# Télécharger le fichier si non présent 
-if not os.path.exists(csv_path): 
-print("Téléchargement du jeu de données...") 
-response = requests.get(url) 
-response.raise_for_status()  # S'assure que la requête a réussi 
+    """ 
+    Télécharge, extrait et prépare le jeu de données Sentiment140. 
+    """ 
+    # Crée le répertoire de données s'il n'existe pas 
+    os.makedirs(data_dir, exist_ok=True) 
+    zip_path = os.path.join(data_dir, 'sentiment140.zip') 
+    csv_path = os.path.join(data_dir, 'training.1600000.processed.noemoticon.csv') 
+    # Télécharger le fichier si non présent 
+    if not os.path.exists(csv_path): 
+        print("Téléchargement du jeu de données...") 
+        response = requests.get(url) 
+        response.raise_for_status()  # S'assure que la requête a réussi 
         # Extraire le contenu du zip en mémoire 
         with zipfile.ZipFile(io.BytesIO(response.content)) as z: 
             z.extractall(data_dir) 
@@ -48,8 +48,8 @@ if __name__ == "__main__":
      
     # Pour des raisons de performance pendant le TP, nous allons travailler sur un échantillon 
     # Enlevez.sample() pour utiliser le jeu de données complet 
-data_df = load_and_prepare_data(dataset_url).sample(n=50000, random_state=42) 
-# Sauvegarder l'échantillon pour les étapes suivantes 
-output_path = os.path.join('data', 'raw_tweets.csv') 
-data_df.to_csv(output_path, index=False) 
-print(f"Échantillon de données sauvegardé dans {output_path}")
+    data_df = load_and_prepare_data(dataset_url).sample(n=50000, random_state=42) 
+    # Sauvegarder l'échantillon pour les étapes suivantes 
+    output_path = os.path.join('data', 'raw_tweets.csv') 
+    data_df.to_csv(output_path, index=False) 
+    print(f"Échantillon de données sauvegardé dans {output_path}")
